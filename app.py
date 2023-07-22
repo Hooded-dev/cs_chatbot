@@ -1,4 +1,5 @@
-import chromadb
+import config
+import streamlit as st
 from langchain.document_loaders import PyPDFLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
@@ -45,3 +46,15 @@ from langchain.chains.conversation.memory import (ConversationBufferMemory,
 from langchain.callbacks import get_openai_callback
 import tiktoken
 import os
+
+def read_links_from_file(file_path):
+    links = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            link = line.strip()  # Remove leading/trailing whitespace and newlines
+            links.append(link)
+    return links
+
+file_path = "data.txt"
+links_list = read_links_from_file(file_path)
+print(links_list)
